@@ -28,9 +28,13 @@
   {% for paper in papers %}
      <tr>
        <td>
+	 {% if paper.url != "" %}
 	 <a href="{{ paper.url }}" target="_blank">
 	   {{ paper.title }}
 	 </a>
+	 {% else %}
+	 {{ paper.title }}
+	 {% endif %}
        </td>
        <td>
 	 {{ paper.doi }}
