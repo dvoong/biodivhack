@@ -1,0 +1,4 @@
+<ul>
+  {% for status in statuses %}
+  <li>{{ status.date }}: {{ status.status }}. {{ status.notes }}</li>
+</ul>

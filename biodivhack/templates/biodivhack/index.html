@@ -1,0 +1,72 @@
+<header>
+</header>
+
+<table border="1" style="width:100%;">
+  <tr>
+    <td>
+      Title
+    </td>
+    <td>
+      DOI
+    </td>
+    <td>
+      Status
+    </td>
+    <td>
+      Reviews
+    </td>
+    <td>
+      Keyword Summary
+    </td>
+    <td>
+      Score
+    </td>
+    <td>
+      Add to database
+    </td>
+  </tr>
+  {% for paper in papers %}
+     <tr>
+       <td>
+	 <a href="{{ paper.url }}" target="_blank">
+	   {{ paper.title }}
+	 </a>
+       </td>
+       <td>
+	 {{ paper.doi }}
+       </td>
+       <td>
+	 <a href="/statuses/{{ paper.id }}">
+	   {{ paper.status }}
+	 </a>
+       </td>
+       <td>
+	 <ul>
+	   {% for review in paper.reviews %}
+	   <li>
+	     <a href="/reviews/{{ paper.id }}/{{ review.id }}">
+	       {{ review.reviewer }}: {{ review.date }}
+	     </a>
+	   </li>
+	   {% endfor %}
+	 </ul>
+       </td>
+       <td>
+	 <form action="/keyword-summary/{{ paper.id }}">
+	   <button type="submit">View</button>
+	 </form>
+       </td>
+       <td>
+	 {{ paper.score }}
+       </td>
+       <td>
+	 <form action="/add-to-database">
+	   {% if paper.status != "Accepted" %}
+	   <button type="submit">Add to Database</button>
+	   {% else %}
+	   <button type="submit">Remove from Database</button>
+	   {% endif %}
+	 </form>
+     </tr>
+  {% endfor %}
+</table>

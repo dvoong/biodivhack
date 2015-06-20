@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from biodivhack import views
 
 urlpatterns = [
+    url(r'^$', views.index),
+    url(r'^keyword-summary/(\d+)', views.keyword_summary),
+    url(r'^reviews/(\d+)/(\d+)', views.review),
+    url(r'^statuses/(\d+)', views.status),
+    url(r'^add-to-database', views.add_to_database),
     url(r'^admin/', include(admin.site.urls)),
 ]
